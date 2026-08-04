@@ -1,0 +1,42 @@
+:root {
+  --bg-primary: #0D0D0D;
+  --bg-secondary: #161616;
+  --accent-purple: #8B5CF6;
+  --accent-green: #00FFB2;
+  --text-white: #FFFFFF;
+  --text-muted: #CFCFCF;
+  --gray-dark: #5B5B5B;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-white);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Customização de Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
