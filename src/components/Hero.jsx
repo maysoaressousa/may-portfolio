@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { FiDownload, FiArrowUpRight } from 'react-icons/fi';
-import minhaFoto from '../assets/images/profile.jpg';
+
+// 1. Caminho corrigido subindo duas pastas (../../)
+import minhaFoto from '../../assets/images/profile.jpg';
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -335,8 +337,9 @@ export const Hero = () => {
       >
         <GeometricWrapper>
           <ImageContainer>
+            {/* 2. Uso da variável minhaFoto entre chaves */}
             <img
-              src="src/assets/images/profile.jpg"
+              src={minhaFoto}
               alt="Mayara - Desenvolvedora Web"
             />
           </ImageContainer>
