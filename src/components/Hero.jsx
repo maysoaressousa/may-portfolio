@@ -324,7 +324,7 @@ export const Hero = () => {
           <PrimaryBtn to="projetos" smooth={true} duration={500} offset={-70}>
             Ver Projetos <FiArrowUpRight />
           </PrimaryBtn>
-          <SecondaryBtn href="/cv.pdf" download target="_blank" rel="noopener noreferrer">
+          <SecondaryBtn href="/Desenvolvedora_Mayara_Soares.pdf" download target="_blank" rel="noopener noreferrer">
             Download CV <FiDownload />
           </SecondaryBtn>
         </ButtonGroup>
