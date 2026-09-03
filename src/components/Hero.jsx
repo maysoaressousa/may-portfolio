@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { FiDownload, FiArrowUpRight } from 'react-icons/fi';
 
-// 1. Caminho corrigido subindo duas pastas (../../)
-import minhaFoto from '../../assets/images/profile.jpg';
+
+import minhaFoto from '../assets/images/profile.jpg';
 
 const HeroSection = styled.section`
   min-height: 100vh;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiGithub, FiExternalLink, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 const ProjectsSection = styled.section`
   padding: 8rem 8%;
@@ -81,7 +81,6 @@ const ImageContainer = styled.div`
     transform: scale(1.08);
   }
 
-  /* Overlay escuro com brilho sutil */
   &::after {
     content: '';
     position: absolute;
@@ -175,6 +174,39 @@ const ActionBtn = styled.a`
   }
 `;
 
+const LoadMoreContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+`;
+
+const LoadMoreBtn = styled.button`
+  background: transparent;
+  color: var(--text-white);
+  border: 1px solid var(--accent-green);
+  padding: 0.9rem 2.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s ease;
+
+  svg {
+    font-size: 1.2rem;
+    color: var(--accent-green);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(0, 255, 178, 0.1);
+    box-shadow: 0 0 25px rgba(0, 255, 178, 0.25);
+    transform: translateY(-3px);
+  }
+`;
+
 const projectsData = [
   {
     id: 1,
@@ -191,21 +223,80 @@ const projectsData = [
     description: 'Website profissional para estúdio de tatuagem e piercing, destacando portfólio de trabalhos, serviços e integração para agendamentos.',
     image: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&q=80&w=800',
     tags: ['React', 'TypeScript', 'Styled Components', 'Framer Motion'],
-    github: 'https://github.com',
-    demo: 'https://example.com',
+    github: 'https://github.com/maysoaressousa/site-estudio',
+    demo: 'https://www.kinbenevidestattoo.com.br/',
   },
   {
     id: 3,
-    title: 'Plataforma de Gestão Hackathon',
-    description: 'Aplicação desenvolvida em evento de inovação para otimização de fluxos operacionais, análise de dados e dashboards interativos.',
+    title: 'Site de Loja de Construção',
+    description: 'Aplicação desenvolvida com foco em catálogo de produtos, páginas institucionais rápidas e layout otimizado para conversão de vendas.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
     tags: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
-    github: 'https://github.com',
+    github: 'https://github.com/maysoaressousa/loja-construcao',
+    demo: 'https://www.r3construcoesloja.com/',
+  },
+  {
+    id: 4,
+    title: 'Empresa ArraZe - Eventos',
+    description: 'Site institucional sobre decoração locação de itens e cenários para eventos e festas.',
+    image: '/arraze-site.png',
+    tags: ['React.js', 'Tailwind CSS',],
+    github: 'https://github.com/maysoaressousa/arraze-decoracoes',
+    demo: 'https://arraze-decoracoes.vercel.app/',
+  },
+  {
+    id: 5,
+    title: 'Site Poetisa Val Nalini',
+    description: 'Site pessoal da poeta Val Nalini, apresentando seu trabalho literário.',
+    image: '/site-amalgama.png',
+    tags: ['React', 'Node.js'],
+    github: 'https://github.com/maysoaressousa',
+    demo: 'https://amalgama-livro.vercel.app/',
+  },
+  {
+    id: 6,
+    title: 'Landing Page Advocacia & Consultoria',
+    description: 'Página institucional sofisticada para serviços jurídicos e de assessoria, focada em alta conversão e compliance com LGPD.',
+    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&q=80&w=800',
+    tags: ['React', 'Styled Components', 'Framer Motion'],
+    github: 'https://github.com/maysoaressousa',
+    demo: 'https://example.com',
+  },
+  {
+    id: 7,
+    title: 'Task & Workflow Manager',
+    description: 'Aplicativo Kanban em tempo real para gerenciamento ágil de tarefas e produtividade de equipes de desenvolvimento.',
+    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800',
+    tags: ['React', 'TypeScript', 'Node.js', 'Socket.io'],
+    github: 'https://github.com/maysoaressousa',
+    demo: 'https://example.com',
+  },
+  {
+    id: 8,
+    title: 'Portal de Conteúdo & Blog Dark',
+    description: 'Arquitetura JAMstack com renderização estática para máxima velocidade, modo escuro nativo e SEO totalmente otimizado.',
+    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800',
+    tags: ['Next.js', 'Markdown', 'Tailwind CSS', 'Vercel'],
+    github: 'https://github.com/maysoaressousa',
+    demo: 'https://example.com',
+  },
+  {
+    id: 9,
+    title: 'App Oracular & Simbolismo Web',
+    description: 'Interface interativa para sorteio e leitura simbólica de arquétipos, com efeitos visuais místicos, transições fluidas e áudio ambiente.',
+    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800',
+    tags: ['React', 'Framer Motion', 'Canvas API', 'CSS Glass'],
+    github: 'https://github.com/maysoaressousa',
     demo: 'https://example.com',
   },
 ];
 
 export const Projects = () => {
+  const [showAll, setShowAll] = useState(false);
+
+  // Exibe apenas 3 projetos inicialmente (1 fileira) ou todos os 9 quando expandido
+  const displayedProjects = showAll ? projectsData : projectsData.slice(0, 3);
+
   return (
     <ProjectsSection id="projetos">
       <SectionHeader
@@ -219,40 +310,57 @@ export const Projects = () => {
       </SectionHeader>
 
       <ProjectsGrid>
-        {projectsData.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
-            viewport={{ once: true }}
-          >
-            <ImageContainer>
-              <img src={project.image} alt={project.title} />
-            </ImageContainer>
+        <AnimatePresence>
+          {displayedProjects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: (index % 3) * 0.1 }}
+              layout
+            >
+              <ImageContainer>
+                <img src={project.image} alt={project.title} />
+              </ImageContainer>
 
-            <CardContent>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
+              <CardContent>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
 
-              <TechTags>
-                {project.tags.map((tag, i) => (
-                  <Tag key={i}>{tag}</Tag>
-                ))}
-              </TechTags>
+                <TechTags>
+                  {project.tags.map((tag, i) => (
+                    <Tag key={i}>{tag}</Tag>
+                  ))}
+                </TechTags>
 
-              <ButtonGroup>
-                <ActionBtn href={project.github} target="_blank" rel="noopener noreferrer" className="secondary">
-                  <FiGithub /> GitHub
-                </ActionBtn>
-                <ActionBtn href={project.demo} target="_blank" rel="noopener noreferrer" className="primary">
-                  <FiExternalLink /> Demo
-                </ActionBtn>
-              </ButtonGroup>
-            </CardContent>
-          </ProjectCard>
-        ))}
+                <ButtonGroup>
+                  <ActionBtn href={project.github} target="_blank" rel="noopener noreferrer" className="secondary">
+                    <FiGithub /> GitHub
+                  </ActionBtn>
+                  <ActionBtn href={project.demo} target="_blank" rel="noopener noreferrer" className="primary">
+                    <FiExternalLink /> Demo
+                  </ActionBtn>
+                </ButtonGroup>
+              </CardContent>
+            </ProjectCard>
+          ))}
+        </AnimatePresence>
       </ProjectsGrid>
+
+      <LoadMoreContainer>
+        <LoadMoreBtn onClick={() => setShowAll(!showAll)}>
+          {showAll ? (
+            <>
+              Mostrar Menos <FiChevronUp />
+            </>
+          ) : (
+            <>
+              Mostrar Mais Projetos <FiChevronDown />
+            </>
+          )}
+        </LoadMoreBtn>
+      </LoadMoreContainer>
     </ProjectsSection>
   );
 };
