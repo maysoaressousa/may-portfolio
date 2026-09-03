@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import profileImage from '../assets/images/profile.jpg';
 import { 
   FiUser, 
   FiMapPin, 
@@ -253,7 +254,7 @@ export const About = () => {
         >
           <ImageCard>
             <img 
-              src="src/assets/images/profile.jpg" 
+              src={profileImage} 
               alt="Mayara Soares" 
             />
           </ImageCard>
@@ -282,7 +283,7 @@ export const About = () => {
             ))}
           </CardsGrid>
 
-          <DownloadBtn href="/cv.pdf" download target="_blank" rel="noopener noreferrer">
+          <DownloadBtn href="/Desenvolvedora_Mayara_Soares.pdf" download target="_blank" rel="noopener noreferrer">
             Download CV <FiDownload />
           </DownloadBtn>
         </TextContent>
