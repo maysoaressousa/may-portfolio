@@ -284,8 +284,8 @@ export const About = () => {
           </CardsGrid>
 
           <DownloadBtn href="/Desenvolvedora_Mayara_Soares.pdf" download target="_blank" rel="noopener noreferrer">
-            Download CV <FiDownload />
-          </DownloadBtn>
+  Download CV <FiDownload />
+</DownloadBtn>
         </TextContent>
       </Container>
     </AboutSection>
